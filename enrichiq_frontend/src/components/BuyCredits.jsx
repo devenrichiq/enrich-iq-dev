@@ -15,7 +15,7 @@ import { planConfiguration } from "../constant/constants.jsx"
 import "react-toastify/dist/ReactToastify.css"
 import { dotSpinner } from "ldrs"
 import IOSSwitch from "./mui/Switch"
-import { globalPriceList } from "../../../backend/constants/constants"
+import { globalPriceList } from "../constant/constants.jsx"
 
 
 

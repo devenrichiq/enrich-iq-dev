@@ -18,6 +18,12 @@ export const priceConfiguration = {
 }
 
 
+export const globalPriceList = [
+	"price_1PT5TySIJMxI4tFFK6hXKXwb",
+	"price_1PT5UzSIJMxI4tFFgTC43kos",
+	"price_1PT5VsSIJMxI4tFFdnnarfss",
+]
+
 
 export const accordionData = [
 		{
