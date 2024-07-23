@@ -23,7 +23,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 const client_endpoint =
 	process.env.NODE_ENV !== "production"
 		? "http://localhost:5173"
-		: "https://enrich-iq.vercel.app"
+		: "https://dev-enrichiq.vercel.app"
 
 // GET OPERATION - ENDPOINTS
 
