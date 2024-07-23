@@ -12,18 +12,18 @@ const useVerifyEmail = () => {
 	const verifyEmail = useCallback(async () => {
 		const session = await getSessionAndRefreshIfNeeded()
 		const { data } = await supabase.auth.getUser()
-		const { id: userId, email } = data.user
+		const { id: userId, email:new_email } = data.user
 		const { data: getDetails } = await supabase
 			.from("users")
 			.select("*")
 			.eq("id", userId)
-
-		if (email !== getDetails[0].email && !emailVerified) {
+		const prev_email = getDetails[0].email 
+		if (new_email !== prev_email && !emailVerified) {
 
 			
 			// if the email differs for both user table and auth table
-
-			const url = `${server_end_point}/subscription-id?email=${email}`
+			try{
+			const url = `${server_end_point}/subscription-id?email=${prev_email}`
 
 			const response = await fetch(url, {
 				method: "GET",
@@ -34,28 +34,33 @@ const useVerifyEmail = () => {
 			})
 
 			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`)
+				console.error("Stripe Customer not found!", response)
 			}
 
 			console.log("Stripe Email Updated")
 			const data = await response.json()
 
-			if (data?.customer_id && email) {
-				if (handleStripeEmailChange(data.customer_id, email, session)) {
+			if (data?.customer_id && new_email) {
+				if (handleStripeEmailChange(data.customer_id, new_email, session)) {
 					// update the email with stripe
 					const { error } = await supabase
 						.from("users")
 						.update({
-							email: email,
+							email: new_email,
 							updated_at: new Date().toISOString(),
 						})
 						.eq("id", userId)
 
 					if (!error) {
-                        setEmailVerified(true)
+						setEmailVerified(true)
 					}
 				}
 			}
+			}
+			catch(err){
+				console.error(err.message)
+			}
+			
 		}else{
             setEmailVerified(true)
         }

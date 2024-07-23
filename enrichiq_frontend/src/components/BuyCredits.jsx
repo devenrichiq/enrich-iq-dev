@@ -21,10 +21,6 @@ import { globalPriceList } from "../constant/constants.jsx"
 
 
 function BuyCredits({ setLoading, loading, session }) {
-
-  
-
-
 	const { customerEmail, user } = useFetchUser()
 	const { setCredits } = useCredits()
 	const [subscription, setSubscription] = useState(null)
@@ -112,6 +108,7 @@ function BuyCredits({ setLoading, loading, session }) {
 		cancelAt,
 		setCancelAt,
 	])
+
 	useEffect(() => {
 		const fetchSchedule = async () => {
 			try {
@@ -289,7 +286,18 @@ function BuyCredits({ setLoading, loading, session }) {
 	dotSpinner.register()
 
 	const spinner = (
-		<div className="w-full h-[100vh] justify-center flex items-center"></div>
+		<div className="w-full h-[100vh] justify-center flex items-center">
+			<div className="w-full h-screen flex justify-center items-center ">
+				<div className="spinner">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
 	)
 
 	const content = (
