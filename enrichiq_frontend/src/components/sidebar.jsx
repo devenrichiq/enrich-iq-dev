@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 function Sidebar(props) {
   lineSpinner.register();
 
+
+  
   const { credits, loading } = useCredits();
   const [isLowCredits, setIsLowCredits] = useState(false);
 

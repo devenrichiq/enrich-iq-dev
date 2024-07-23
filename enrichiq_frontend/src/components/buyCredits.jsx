@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import supabase from "../supabase/supabaseClient"
 import { server_end_point, client_endpoint } from "../utils/endpoint"
 import { toast } from "react-toastify"
-import Sidebar from "./sidebar"
+import Sidebar from "./Sidebar"
 import SubscriptionButtons from "./SubscriptionButtons"
 import useCredits from "../hooks/useCredits"
 import { lineSpinner } from "ldrs"
@@ -23,6 +23,8 @@ import { globalPriceList } from "../../../backend/constants/constants"
 function BuyCredits({ setLoading, loading, session }) {
 
   
+
+
 	const { customerEmail, user } = useFetchUser()
 	const { setCredits } = useCredits()
 	const [subscription, setSubscription] = useState(null)

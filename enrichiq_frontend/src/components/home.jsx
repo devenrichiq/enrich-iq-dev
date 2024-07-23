@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 import { useEffect, useState, useCallback } from "react";
-import Sidebar from "./sidebar.jsx";
+import Sidebar from "./Sidebar.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useFetchUser from "../hooks/useFetchUser";
@@ -18,6 +18,8 @@ import supabase from "../supabase/supabaseClient.jsx";
 ring2.register();
 
 function Home({ session }) {
+
+
   // Custom hooks for fetching user data, credits, and email verification status
   const { credits, loading: creditsLoading } = useCredits();
   const { customerEmail, user } = useFetchUser();

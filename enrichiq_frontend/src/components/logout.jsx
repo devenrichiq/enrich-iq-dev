@@ -7,6 +7,8 @@ function Logout() {
 	const navigate = useNavigate()
 
 	const handleSignOut = async () => {
+
+		
 		const { error } = await supabase.auth.signOut()
 		if (error) {
 			console.log("Error during sign out:", error.message)

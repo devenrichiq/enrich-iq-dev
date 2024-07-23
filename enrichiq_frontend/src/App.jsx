@@ -4,12 +4,12 @@ import {
 	Routes,
 	Route,
 } from "react-router-dom"
-import Home from "./components/home.jsx"
+import Home from "./components/Home.jsx"
 import Login from "./components/Login.jsx"
-import Logout from "./components/logout.jsx"
+import Logout from "./components/Logout.jsx"
 import { ThemeProvider } from "@mui/material/styles"
 import theme from "./theme"
-import BuyCredits from "./components/buyCredits.jsx"
+import BuyCredits from "./components/BuyCredits.jsx"
 import { ToastContainer } from "react-toastify"
 import UpdatePassword from "./components/UpdatePassword.jsx"
 import getSessionAndRefreshIfNeeded from "./services/getSessionRefreshIfNeeded.jsx"
