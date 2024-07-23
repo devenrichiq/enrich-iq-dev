@@ -287,16 +287,7 @@ function BuyCredits({ setLoading, loading, session }) {
 
 	const spinner = (
 		<div className="w-full h-[100vh] justify-center flex items-center">
-			<div className="w-full h-screen flex justify-center items-center ">
-				<div className="spinner">
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
-			</div>
+			<iframe src="https://lottie.host/embed/468630d0-981b-4fd4-9897-105ac4cf2130/VpLuYpdyVG.json"></iframe>
 		</div>
 	)
 

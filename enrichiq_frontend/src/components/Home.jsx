@@ -27,7 +27,7 @@ function Home({ session }) {
 
   // State management
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isSubscriptionActive, setSubscriptionActive] = useState(false);
+  const [isSubscriptionActive, setSubscriptionActive] = useState(true);
   const [formLoading, setFormLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: customerEmail || "",
@@ -222,7 +222,7 @@ function Home({ session }) {
         <div className=" bg-[#232323] border- transform hover:scale-[101%] duration-200 mt-24 flex justify-center items-center rounded-md mx-4 py-6">
           <div className="flex items-center px-20 w-full justify-between">
             <div className="font-semibold text-white border-white text-xl">
-              {"You Don't Have An Active Subscription !"}
+              {"You Don't Have An Active Subscription!"}
             </div>
             <div>
               <button
@@ -426,14 +426,20 @@ function Home({ session }) {
   );
 
   return (
-    <>
-      {emailVerified ? (
-        <Sidebar bodyContent={content} />
-      ) : (
-        <Sidebar bodyContent={<></>} />
-      )}
-    </>
-  );
+		<>
+			{emailVerified ? (
+				<Sidebar bodyContent={content} />
+			) : (
+				<Sidebar
+					bodyContent={
+						<div className="w-full h-[100vh] justify-center flex items-center">
+							<iframe src="https://lottie.host/embed/468630d0-981b-4fd4-9897-105ac4cf2130/VpLuYpdyVG.json"></iframe>
+						</div>
+					}
+				/>
+			)}
+		</>
+	)
 }
 
 export default Home;
