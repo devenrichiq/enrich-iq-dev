@@ -354,19 +354,22 @@ export async function handleWebhook(req, res) {
         const newPriceID = subscriptionDetails.items.data[0].price.id;
         const availableCredits = parseInt(userDetails.credits);
      
-        if (userDetails && checkoutSessionCompleted.payment_status === "paid") {
-          
-          console.log(configCredits[newPriceID])
-          console.log(newPriceID)
-          console.log("credits")
+        if (
+					userDetails &&
+					checkoutSessionCompleted.payment_status === "paid" &&
+					configCredits[newPriceID]
+				) {
+					console.log(configCredits[newPriceID])
+					console.log(newPriceID)
+					console.log("credits")
 
-          const newCredits = availableCredits + configCredits[newPriceID];
-          await updateUserCredits(customer_email, newCredits);
-          await Log(
-            subscriptionDetails.customer,
-            `Received ${configCredits[newPriceID]} credits for ${subscriptionId}`
-          );
-        }
+					const newCredits = availableCredits + configCredits[newPriceID]
+					await updateUserCredits(customer_email, newCredits)
+					await Log(
+						subscriptionDetails.customer,
+						`Received ${configCredits[newPriceID]} credits for ${subscriptionId}`
+					)
+				}
         await Log(
           subscriptionDetails.customer,
           `Subscribed to ${newPriceID} successfully`
@@ -388,18 +391,18 @@ export async function handleWebhook(req, res) {
           const newPriceID = subscriptionDetails.items.data[0].price.id;
           const availableCredits = parseInt(userDetails.credits);
 
-          if (userDetails?.credits) {
-            const newCredits = availableCredits + configCredits[newPriceID];
+          if (userDetails?.credits && configCredits[newPriceID]) {
+						const newCredits = availableCredits + configCredits[newPriceID]
 
-            console.log(configCredits[newPriceID])
-            console.log(newPriceID)
-            console.log("credits")
-            await updateUserCredits(customer_email, newCredits);
-            await Log(
-              subscriptionDetails.customer,
-              `Received ${configCredits[newPriceID]} credits for ${subscriptionId}`
-            );
-          }
+						console.log(configCredits[newPriceID])
+						console.log(newPriceID)
+						console.log("credits")
+						await updateUserCredits(customer_email, newCredits)
+						await Log(
+							subscriptionDetails.customer,
+							`Received ${configCredits[newPriceID]} credits for ${subscriptionId}`
+						)
+					}
           await Log(
             subscriptionDetails.customer,
             `Invoice billed for price Id: ${newPriceID}`
