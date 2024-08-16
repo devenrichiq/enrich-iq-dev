@@ -1,27 +1,27 @@
 // // production config
 
 export const planConfiguration = {
-	price_1PoOBDSIJMxI4tFFoCwU1vNp: "Basic",
-	price_1PoOBOSIJMxI4tFFDKbqiOHj: "Pro",
-	price_1PoOBXSIJMxI4tFFtF9otSis: "Premium",
-	price_1PoOEXSIJMxI4tFFOjaXb57n: "Basic",
-	price_1PoOEmSIJMxI4tFFTPCkrDKS: "Pro",
-	price_1PoOF0SIJMxI4tFFOp2IvdZG: "Premium",
+	price_1PoPlsSIJMxI4tFFrhTEGqut: "Basic",
+	price_1PoPlsSIJMxI4tFFSTdeR0Mt: "Pro",
+	price_1PoPlsSIJMxI4tFFmKPoky1l: "Premium",
+	price_1PoPlsSIJMxI4tFFtJOsiNE3: "Basic",
+	price_1PoPlsSIJMxI4tFF8ZA3dXlB: "Pro",
+	price_1PoPlsSIJMxI4tFFslkQTbi2: "Premium",
 }
 
 export const priceConfiguration = {
-	price_1PoOBDSIJMxI4tFFoCwU1vNp: 100,
-	price_1PoOBOSIJMxI4tFFDKbqiOHj: 200,
-	price_1PoOBXSIJMxI4tFFtF9otSis: 300,
-	price_1PoOEXSIJMxI4tFFOjaXb57n: 100,
-	price_1PoOEmSIJMxI4tFFTPCkrDKS: 200,
-	price_1PoOF0SIJMxI4tFFOp2IvdZG: 300,
+	price_1PoPlsSIJMxI4tFFrhTEGqut: 100,
+	price_1PoPlsSIJMxI4tFFSTdeR0Mt: 200,
+	price_1PoPlsSIJMxI4tFFmKPoky1l: 300,
+	price_1PoPlsSIJMxI4tFFtJOsiNE3: 100,
+	price_1PoPlsSIJMxI4tFF8ZA3dXlB: 200,
+	price_1PoPlsSIJMxI4tFFslkQTbi2: 300,
 }
 
 export const globalPriceList = [
-	"price_1PoOBDSIJMxI4tFFoCwU1vNp",
-	"price_1PoOBOSIJMxI4tFFDKbqiOHj",
-	"price_1PoOBXSIJMxI4tFFtF9otSis",
+	"price_1PoPlsSIJMxI4tFFrhTEGqut",
+	"price_1PoPlsSIJMxI4tFFSTdeR0Mt",
+	"price_1PoPlsSIJMxI4tFFmKPoky1l",
 ]
 
 // testing config

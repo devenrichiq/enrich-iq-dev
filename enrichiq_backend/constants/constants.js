@@ -1,18 +1,18 @@
 // // production price config
 
 export const configCredits = {
-	price_1PoOBDSIJMxI4tFFoCwU1vNp: 25000,
-	price_1PoOEmSIJMxI4tFFTPCkrDKS: 55000,
-	price_1PoOF0SIJMxI4tFFOp2IvdZG: 90000,
-	price_1PoOEXSIJMxI4tFFOjaXb57n: 25000,
-	price_1PoOBOSIJMxI4tFFDKbqiOHj: 55000,
-	price_1PoOBXSIJMxI4tFFtF9otSis: 90000,
+	price_1PoPlsSIJMxI4tFFrhTEGqut: 25000,
+	price_1PoPlsSIJMxI4tFF8ZA3dXlB: 55000,
+	price_1PoPlsSIJMxI4tFFslkQTbi2: 90000,
+	price_1PoPlsSIJMxI4tFFtJOsiNE3: 25000,
+	price_1PoPlsSIJMxI4tFFSTdeR0Mt: 55000,
+	price_1PoPlsSIJMxI4tFFmKPoky1l: 90000,
 }
 
 export const globalPriceList = [
-	"price_1PoOBDSIJMxI4tFFoCwU1vNp",
-	"price_1PoOBOSIJMxI4tFFDKbqiOHj",
-	"price_1PoOBXSIJMxI4tFFtF9otSis",
+	"price_1PoPlsSIJMxI4tFFrhTEGqut",
+	"price_1PoPlsSIJMxI4tFFSTdeR0Mt",
+	"price_1PoPlsSIJMxI4tFFmKPoky1l",
 ]
 
 // testing price config
