@@ -24,7 +24,7 @@ const useFetchUser = () => {
 				console.error("Error:", getDetailError.message)
 			}
 			var updatedUserObject = data.user
-			updatedUserObject = { ...updatedUserObject, name: getDetails[0].name }
+			updatedUserObject = { ...updatedUserObject, name: getDetails[0].name, payment_type: getDetails[0].payment_type }
 
 			if (data && data.user) {
 				setUser(updatedUserObject)
@@ -41,7 +41,7 @@ const useFetchUser = () => {
 		} catch (error) {
 			console.error("Error fetching user:", error.message)
 		}
-	}, [])
+	}, [navigate])
 	useEffect(() => {
 		fetchUser()
 	}, [fetchUser])
