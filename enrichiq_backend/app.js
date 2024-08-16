@@ -20,7 +20,11 @@ const start = async () => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(express.json());
-  app.use(cors());
+  const corsOptions = {
+    origin: ["http://localhost:5173", "https://dev-enrichiq.vercel.app"],
+    optionsSuccessStatus: 200,
+  }
+  app.use(cors(corsOptions));
 
   app.use('/', routes)
 
