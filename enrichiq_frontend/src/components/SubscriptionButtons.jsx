@@ -7,6 +7,7 @@ import { server_end_point } from "../utils/endpoint"
 import { ring2 } from "ldrs";
 import { planConfiguration, priceConfiguration } from "../constant/constants";
 import AlertDialog from "./mui/AlertDialog";
+import useCredits from "../hooks/useCredits";
 ring2.register();
 
 
@@ -30,6 +31,7 @@ const SubscriptionButtons = ({
   const [loading, setLoading] = useState(false);
 	const [open, setOpen] = React.useState(false)
   const [title, setTitle] = useState("")
+  const {fetchCredits: refreshCredits} = useCredits()
 
   const handleAlert = (cancel) => {
     if (checkPriceType(priceId) !== checkPriceType(userPriceId)) {
@@ -103,11 +105,14 @@ const SubscriptionButtons = ({
             "Failed to update subscription. Please try again."
         );
       } finally {
+        refreshCredits()
         setLoading(false);
       }
+
       window.location.reload()
+
     },
-    [session.access_token, subscription_id]
+    [refreshCredits, session.access_token, subscription_id]
   );
 
   const handleCancelPlan = async () => {
@@ -132,6 +137,7 @@ const SubscriptionButtons = ({
           "Failed to cancel subscription. Please try again."
       );
     } finally {
+      refreshCredits()
       setLoading(false);
     }
   };

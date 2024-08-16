@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 import { Link } from "react-router-dom";
-import useCredits from "../hooks/useCredits";
 import "react-toastify/dist/ReactToastify.css";
 import { lineSpinner } from "ldrs";
 import { useEffect, useState } from "react";
@@ -11,7 +10,7 @@ function Sidebar(props) {
 
 
   
-  const { credits, loading } = useCredits();
+  const { credits, loading } = props
   const [isLowCredits, setIsLowCredits] = useState(false);
 
   useEffect(() => {

@@ -21,7 +21,7 @@ function Home({ session }) {
 
 
   // Custom hooks for fetching user data, credits, and email verification status
-  const { credits, loading: creditsLoading } = useCredits();
+  const { credits, loading: creditsLoading, fetchCredits:refreshCredits } = useCredits();
   const { customerEmail, user } = useFetchUser();
   const { emailVerified } = useVerifyEmail();
 
@@ -184,6 +184,7 @@ function Home({ session }) {
       );
 
       if (response.status === 200) {
+        
         toast.success(
           "We have received your request. You will receive an email shortly."
         );
@@ -199,6 +200,8 @@ function Home({ session }) {
             toast.error("Error updating credits.");
           } else {
             console.log("Credits updated successfully:", data);
+            refreshCredits()
+            
           }
         } catch (error) {
           console.error("Error updating credits:", error.message);
@@ -427,17 +430,19 @@ function Home({ session }) {
 
   return (
 		<>
-			{emailVerified ? (
-				<Sidebar bodyContent={content} />
-			) : (
-				<Sidebar
-					bodyContent={
+			<Sidebar
+				credits={credits}
+				loading={creditsLoading}
+				bodyContent={
+					emailVerified ? (
+						content
+					) : (
 						<div className="w-full h-[100vh] justify-center flex items-center">
 							<iframe src="https://lottie.host/embed/468630d0-981b-4fd4-9897-105ac4cf2130/VpLuYpdyVG.json"></iframe>
 						</div>
-					}
-				/>
-			)}
+					)
+				}
+			/>
 		</>
 	)
 }

@@ -12,11 +12,18 @@ import {
   cancelSubscriptionSchedule,
   getSubscription,
   upgradeSubscription,
+  updateCancelStripeSubscriptionAtPeriodEnd,
 } from "../services/services.js";
 import { getUserDetails, Log, updateUserCredits } from "../supabase.js";
 import { configCredits } from "../constants/constants.js";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+const stripe_secret_key =
+	process.env.NODE_ENV === "production"
+		? process.env.STRIPE_SECRET_KEY
+		: process.env.STRIPE_SECRET_KEY_TEST 
+
+
+const stripe = new Stripe(stripe_secret_key, {
   apiVersion: "2023-10-16",
 });
 
@@ -195,6 +202,9 @@ export async function updateSubscription(req, res) {
       await cancelSchedule(subscription.schedule);
     }
 
+    if (subscription.cancel_at){
+      await updateCancelStripeSubscriptionAtPeriodEnd(subscription_id , false)
+    }
 
     const isUpgrade =
 			configCredits[subscription.plan.id] < configCredits[price_id]
@@ -259,9 +269,10 @@ export async function cancelSubscription(req, res) {
       await cancelSchedule(subscription.schedule);
     }
 
-    const cancelSubscription = await cancelStripeSubscriptionAtPeriodEnd(
-      subscription.subscription_id
-    );
+    const cancelSubscription = await updateCancelStripeSubscriptionAtPeriodEnd(
+			subscription.subscription_id, true
+		)
+
     if (!cancelSubscription) {
       throw new Error("Error in scheduling stripe subscription cancellation");
     }
@@ -294,7 +305,7 @@ async function cancelSchedule(scheduleId) {
     if (!cancelledSchedule) {
       throw new Error("Subscription schedule not cancelled!");
     }
-    console.log("Subscription cancelled.");
+    console.log("Subscription schedule cancelled.");
   } catch (err) {
     console.log("Error occurred during canceling Schedule: ", err);
     res.send(400).json({

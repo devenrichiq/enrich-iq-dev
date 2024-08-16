@@ -22,7 +22,7 @@ import { globalPriceList } from "../constant/constants.jsx"
 
 function BuyCredits({ setLoading, loading, session }) {
 	const { customerEmail, user } = useFetchUser()
-	const { setCredits } = useCredits()
+	const { credits , loading: creditsLoading, fetchCredits: refreshCredits } = useCredits()
 	const [subscription, setSubscription] = useState(null)
 	const [userPriceId, setUserPriceId] = useState(null)
 	const [customer_id, setCustomerId] = useState(null)
@@ -58,7 +58,7 @@ function BuyCredits({ setLoading, loading, session }) {
 	useEffect(() => {
 		setLoading(true)
 		const fetchSubscription = async () => {
-			setCredits(null)
+			refreshCredits()
 			try {
 				const url = `${server_end_point}/subscription-id?email=${customerEmail}`
 
@@ -102,7 +102,6 @@ function BuyCredits({ setLoading, loading, session }) {
 	}, [
 		customerEmail,
 		session.access_token,
-		setCredits,
 		setLoading,
 		subscriptionStatus,
 		cancelAt,
@@ -153,7 +152,6 @@ function BuyCredits({ setLoading, loading, session }) {
 		scheduleId,
 		session.access_token,
 		setLoading,
-		setCredits,
 		subscription,
 		subscriptionStatus,
 	])
@@ -453,7 +451,10 @@ function BuyCredits({ setLoading, loading, session }) {
 	)
 	return (
 		<>
-			<Sidebar bodyContent={loading ? spinner : content}></Sidebar>
+			<Sidebar
+				credits={credits}
+				loading={creditsLoading}
+				bodyContent={loading && creditsLoading ? spinner : content}></Sidebar>
 		</>
 	)
 }

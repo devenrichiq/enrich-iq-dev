@@ -3,7 +3,13 @@ import dotenv from "dotenv";
 import { Log } from "../supabase.js";
 dotenv.config();
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+
+const stripe_secret_key =
+	process.env.NODE_ENV === "production"
+		? process.env.STRIPE_SECRET_KEY
+		: process.env.STRIPE_SECRET_KEY_TEST 
+
+const stripe = new Stripe(stripe_secret_key, {
 	apiVersion: "2024-06-20",
 })
 
@@ -59,6 +65,17 @@ export async function cancelStripeSubscriptionAtPeriodEnd(subscription_id) {
   }
 }
 
+export async function updateCancelStripeSubscriptionAtPeriodEnd(subscription_id, value) {
+	try {
+		return await stripe.subscriptions.update(subscription_id, {
+			cancel_at_period_end: value,
+		})
+	} catch (error) {
+		console.log(error.message)
+		return null
+	}
+}
+
 export async function checkoutSession({ price_id, email }) {
   try {
     let customer;
@@ -96,7 +113,7 @@ export async function getSubscription(email) {
     const customer = customers.data[0];
     const subscriptions = await stripe.subscriptions.list({
 			customer: customer.id,
-		})
+	})
 
     if (subscriptions.data.length === 0) {
       return null;
@@ -140,12 +157,17 @@ export async function getStripeSubscription(subscription_id) {
   }
 }
 
+const stripe_wh_secret_key =
+	process.env.NODE_ENV === "production"
+		? process.env.STRIPE_WH_SECRET_KEY
+		: process.env.STRIPE_WH_SECRET_KEY_TEST
+
 export async function constructEvent(payload, signature) {
   try {
     return stripe.webhooks.constructEvent(
       payload,
       signature,
-      process.env.STRIPE_WH_SECRET_KEY
+      stripe_wh_secret_key
     );
   } catch (error) {
     console.log(error.message);

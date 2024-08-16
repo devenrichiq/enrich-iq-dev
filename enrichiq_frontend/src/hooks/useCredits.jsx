@@ -26,7 +26,7 @@ const useCredits = () => {
 		fetchCredits()
 	}, [fetchCredits, credits,])
 
-	return { credits, loading, error, setCredits }
+	return { credits, loading, error, setCredits, fetchCredits }
 }
 
 export default useCredits
