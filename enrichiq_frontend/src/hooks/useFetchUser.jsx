@@ -41,7 +41,7 @@ const useFetchUser = () => {
 		} catch (error) {
 			console.error("Error fetching user:", error.message)
 		}
-	}, [navigate])
+	}, [])
 	useEffect(() => {
 		fetchUser()
 	}, [fetchUser])
