@@ -334,8 +334,8 @@ function BuyCredits({ setLoading, loading, session }) {
 												subscriptionStatus={subscriptionStatus}
 												priceId={
 													checked
-														? "price_1PT5TySIJMxI4tFFK6hXKXwb"
-														: "price_1PT5UlSIJMxI4tFF701TNHj5"
+														? "price_1PoOBDSIJMxI4tFFoCwU1vNp"
+														: "price_1PoOEXSIJMxI4tFFOjaXb57n"
 												}
 												userPriceId={userPriceId}
 												user={user}
@@ -371,8 +371,8 @@ function BuyCredits({ setLoading, loading, session }) {
 												subscriptionStatus={subscriptionStatus}
 												priceId={
 													checked
-														? "price_1PT5UzSIJMxI4tFFgTC43kos"
-														: "price_1PT5VZSIJMxI4tFFzOxDJkEr"
+														? "price_1PoOEmSIJMxI4tFFTPCkrDKS"
+														: "price_1PoOBOSIJMxI4tFFDKbqiOHj"
 												}
 												userPriceId={userPriceId}
 												user={user}
@@ -407,8 +407,8 @@ function BuyCredits({ setLoading, loading, session }) {
 												subscriptionStatus={subscriptionStatus}
 												priceId={
 													checked
-														? "price_1PT5VsSIJMxI4tFFdnnarfss"
-														: "price_1PT5VHSIJMxI4tFFubCUjlB1"
+														? "price_1PoOF0SIJMxI4tFFOp2IvdZG"
+														: "price_1PoOBXSIJMxI4tFFtF9otSis"
 												}
 												user={user}
 												userPriceId={userPriceId}
