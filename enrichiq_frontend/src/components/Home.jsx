@@ -162,12 +162,13 @@ function Home({ session }) {
 
     // Check if user has an active subscription
     const currentStatus = await fetchSubscriptionStatus(customerEmail);
-    if (currentStatus !== "active") {
+    const payment_type = user.payment_type
+    if (currentStatus !== "active" && payment_type === "subscription" ) {
       toast.error("You do not have an active subscription.");
       setFormLoading(false);
       return;
     }
-
+    
     const webhookUrl = `https://n8n.cloudron.enrichiq.com/webhook/d4be2e8f-0e7d-4e67-854d-fc5669cf5f9b`;
 
     try {
