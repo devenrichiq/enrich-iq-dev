@@ -132,6 +132,63 @@ Login to your [Stripe dashboard](https://dashboard.stripe.com/) to:
 - **View Subscriptions**: Monitor customer subscriptions and payment activity.
 - **Manage API Keys**: Handle your test and live API keys.
 
+
+## Webhook Setup
+
+Stripe uses webhooks to notify your application when certain events occur, such as when a payment is successful or a subscription is created. In this project, Stripe triggers will be sent to the `/stripe/webhook` endpoint of the backend.
+
+### Step-by-Step Webhook Setup
+
+1. **Install Ngrok**
+
+   Ngrok is a tool that allows you to expose a local server to the internet. This is useful for setting up webhooks during local development.
+
+   First, [download and install Ngrok](https://ngrok.com/download) for your operating system.
+
+2. **Run Ngrok**
+
+   Start Ngrok by running the following command in your terminal:
+
+   ```bash
+   ngrok http localhost:4000
+   ```
+
+   This will create a secure tunnel to your local server running on port 4000 and provide you with a public URL that Stripe can use to send webhook events to your local environment.
+
+3. **Copy the Ngrok URL**
+
+   After running the command, Ngrok will display a forwarding URL (e.g., `https://<your-ngrok-id>.ngrok.io`). Copy this URL, as you will need it for the next step.
+
+4. **Set Up the Webhook in Stripe (Test Mode)**
+
+   - Log in to your [Stripe Dashboard](https://dashboard.stripe.com/).
+   - Navigate to **Developers** > **Webhooks**.
+   - Click on **Add Endpoint**.
+   - Paste the Ngrok URL followed by `/stripe/webhook`. For example:
+     ```
+     https://<your-ngrok-id>.ngrok.io/stripe/webhook
+     ```
+   - Set the **Event Types** you want to listen to, such as `invoice.payment_succeeded`, `customer.subscription.created`, etc.
+   - Save the webhook endpoint.
+
+   Now, Stripe will send events to your locally running backend via the Ngrok URL.
+
+### Testing the Webhook
+
+You can trigger events in Stripe's test mode to see how your application handles them. For example:
+
+- Use Stripe's test card numbers to create a payment.
+- Verify that your backend receives the event at `/stripe/webhook`.
+- Check your application logs to ensure everything is working correctly.
+
+### Important Notes
+
+- **Ngrok Session Duration**: Ngrok sessions typically last for a few hours. If your session ends, you'll need to restart Ngrok and update the webhook URL in Stripe with the new Ngrok URL.
+- **Production Setup**: In production, you will set the webhook URL to your live server's endpoint rather than using Ngrok.
+
+By following these steps, you can effectively handle Stripe webhook events during local development and ensure your integration works as expected.
+
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
